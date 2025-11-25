@@ -7,3 +7,4 @@ def home():
     return {"message": "Welcome to the FastAPI application!"}
 
 
+
