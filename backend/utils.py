@@ -3,12 +3,12 @@ import numpy as np
 import torch
 import os
 
-def audio_processing(audio_path):
+def audio_processing(audio_file_path):
 
     try:
-        y,sr = librosa.load(audio_path, sr=16000)
+        y,sr = librosa.load(audio_file_path, sr=16000)
     except Exception as e:
-        print(f"Error loading audio file {audio_path}: {e}")
+        print(f"Error loading audio file {audio_file_path}: {e}")
         return None
 
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128, n_fft=2048, hop_length=512)
@@ -23,7 +23,6 @@ if __name__ == "__main__":
    
     print("Testing process_audio function...")
     
-
     import soundfile as sf
     fake_audio = np.random.uniform(-1, 1, 16000) # 1 second of noise
     sf.write('test_noise.wav', fake_audio, 16000)
