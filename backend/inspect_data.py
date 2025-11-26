@@ -20,7 +20,7 @@ def inspect_data():
 
 
 try:
-    with open(train_path, "r", encoding="utf-8") as tsvfile:
+    with open(train_path, "r", newline="", encoding="utf-8") as tsvfile:
 
         reader = csv.DictReader(tsvfile, delimiter = "\t")
 
@@ -29,11 +29,10 @@ try:
             if count  >= 3:
                 break
                 
-            filename = row["path"]
-            text = row["sentence"]
+            filename = row.get("path")
+            text = row.get("sentence")
 
             audio_file_path = os.path.join(clips_path, filename)
-
 
             try:
                 if os.path.exists(audio_file_path):
